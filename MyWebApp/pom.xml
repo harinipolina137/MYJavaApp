@@ -10,7 +10,7 @@
   <dependencies>
     <dependency>
   <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-dependency-plugin</artifactId>
+  <artifactId>maven-plugin-api</artifactId>
   <version>3.0.5</version>
   <type>maven-plugin</type>
 </dependency>
