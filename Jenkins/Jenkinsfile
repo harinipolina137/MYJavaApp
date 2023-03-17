@@ -1,0 +1,42 @@
+pipeline{
+    
+    agent any
+    tools{
+        maven 'Maven3'
+    }
+    stages{
+        
+        // stage('DeleteWS'){
+        // steps{
+        //     deleteDir()
+        // }
+            
+        // }
+        
+        stage('Checkout'){
+            
+            steps{
+            cleanWs() 
+            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'Mykey', url: 'https://github.com/harinipolina137/MYJavaApp']])
+                 }
+        }
+        
+        stage('Build'){
+            
+            steps{
+                
+               sh 'mvn clean install -f MyWebApp/pom.xml'
+            }
+        }
+        
+        stage('cleanup'){
+            steps {
+                
+                cleanWs()
+            }
+            
+        }
+      
+    }
+    
+}
