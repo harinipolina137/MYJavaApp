@@ -29,6 +29,20 @@ pipeline{
             }
         }
         
+        stage('Deploy') {
+            
+            steps {
+                
+                sshagent(['deploy_user']) {
+                    
+               sh "scp -o StrictHostKeyChecking=no MyWebApp/target/MyWebApp.war ec2-user@18.204.215.202:/opt/apache-tomcat-9.0.73/webapps"
+                
+                // scp <src_file> username@IP:<dest_path>
+                    
+                       }
+            }
+        }
+        
         stage('cleanup'){
             steps {
                 
